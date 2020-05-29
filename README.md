@@ -1,17 +1,18 @@
 #Threadripper-Build-3960x
 
 ## Workstation Build Specifications
-Motherboard: Asrock Creator TRX40 bios 1.6
-Ram: 64gb 4x16gb CMU32GX4M2C3000C15 OC to 3200
-Processor: 3960x Threadripper
-Boot Graphics: PCIe - Slot #1 - Quadro 2000
-Graphics #2: AMD RX580
-Graphics #3: Asus NVidia 1080
-Displays (4)
-Primary OS - Gentoo
-VM #1 - Windows 10 on 1080
-VM #2 - Gento on RX580
-GPU Passthru
+* Motherboard: Asrock Creator TRX40 bios 1.6
+* Ram: 64gb 4x16gb CMU32GX4M2C3000C15 OC to 3200
+* Processor: 3960x Threadripper
+* Boot Graphics: PCIe - Slot #1 - Quadro 2000
+* Graphics #2: AMD RX580
+* Graphics #3: Asus NVidia 1080
+* Displays (4)
+* Primary OS - Gentoo
+* VM #1 - Windows 10 on 1080
+* VM #2 - Gento on RX580
+
+#GPU Passthru
 
 Bios Settings: There are three or four things that need to be turned on in the Bios. Will make a list, at least one of them needs to be enabled instead of just set to auto.
 
