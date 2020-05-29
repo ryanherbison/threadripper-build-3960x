@@ -65,7 +65,8 @@ options kvm_amd avic=1 npt=1 nested=1
 
 **QEMU config for Windows**
 
-`#!/bin/bash
+```
+#!/bin/bash
 
 vmname="mywindows10"
 if ps -A | grep -q $vmname; then
@@ -98,11 +99,11 @@ qemu-system-x86_64  \
   -drive id=disk0,if=virtio,format=raw,cache=none,file=/dev/disk/by-id/wwn-0x5002538d41c67120,aio=native \
   -drive id=disk1,if=virtio,format=raw,file=/mnt/bigdata/WindowsVirt/win10-secondary.img \
   -drive id=disk2,if=virtio,format=raw,file=/root/images/windows-10-fast.img &
-`
+```
 
 ####Script for showing iommu groups well formatted - usb/storage breakdown
 
-`#!/bin/bash
+```#!/bin/bash
 
 useColors=true
 usePager=true
@@ -219,7 +220,7 @@ for iommuGroup in $iommuGroups; do
 		done | indent
 	done | indent
 done | pager
-
+```
 
 ###Asrock TRX40 Creator iommu groups:
 
