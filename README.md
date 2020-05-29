@@ -1,6 +1,6 @@
-#Threadripper-Build-3960x
+# Threadripper-Build-3960x
 
-## Workstation Build Specifications
+### Workstation Build Specifications
 * Motherboard: Asrock Creator TRX40 bios 1.6
 * Ram: 64gb 4x16gb CMU32GX4M2C3000C15 OC to 3200
 * Processor: 3960x Threadripper
@@ -101,7 +101,7 @@ qemu-system-x86_64  \
   -drive id=disk2,if=virtio,format=raw,file=/root/images/windows-10-fast.img &
 ```
 
-####Script for showing iommu groups well formatted - usb/storage breakdown
+### Script for showing iommu groups well formatted - usb/storage breakdown
 
 ```#!/bin/bash
 
@@ -222,7 +222,7 @@ for iommuGroup in $iommuGroups; do
 done | pager
 ```
 
-###Asrock TRX40 Creator iommu groups:
+### Asrock TRX40 Creator iommu groups:
 ```
 IOMMU group 55
 	45:00.0 Network controller [0280]: Intel Corporation Wi-Fi 6 AX200 [8086:2723] (rev 1a)
