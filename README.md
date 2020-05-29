@@ -229,7 +229,7 @@ for iommuGroup in $iommuGroups; do
 	done | indent
 done | pager
 ```
-# Formatted Results
+### Formatted Results
 ```
 IOMMU group 55
 	45:00.0 Network controller [0280]: Intel Corporation Wi-Fi 6 AX200 [8086:2723] (rev 1a)
