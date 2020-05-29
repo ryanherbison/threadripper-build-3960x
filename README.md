@@ -1,65 +1,54 @@
-threadripper-build-3960x
+#Threadripper-Build-3960x
 
-Workstation Build Specifications
---------------------------------
+## Workstation Build Specifications
 Motherboard: Asrock Creator TRX40 bios 1.6
-
 Ram: 64gb 4x16gb CMU32GX4M2C3000C15 OC to 3200
-
 Processor: 3960x Threadripper
-
 Boot Graphics: PCIe - Slot #1 - Quadro 2000
-
 Graphics #2: AMD RX580
-
 Graphics #3: Asus NVidia 1080
-
 Displays (4)
-
 Primary OS - Gentoo
-
 VM #1 - Windows 10 on 1080
-
 VM #2 - Gento on RX580
-
 GPU Passthru
 
 Bios Settings: There are three or four things that need to be turned on in the Bios. Will make a list, at least one of them needs to be enabled instead of just set to auto.
 
-Kernel Settings: amd_iommu=on iommu=pt pci=noaer
+**Kernel Settings:** amd_iommu=on iommu=pt pci=noaer
 
-Notes: pci-noaer fixed issue with AMD RX580 failing to start with Qemu
+**Notes:** pci-noaer fixed issue with AMD RX580 failing to start with Qemu
 
-Additional Kernel Setting: pcie_no_flr=1022:149C,1022:1487,1022:1048C
-This line requires a kernel patch to quirks.cOVMF 
+**Additional Kernel Setting:** pcie_no_flr=1022:149C,1022:1487,1022:1048C
+This line requires a kernel patch to quirks.c
 The built-in audio and two of the usb controllers have reset issues, they advertise the ability to reset but fail to implement when called.
 
-Kernel Patch:
+**Kernel Patch:**
 Add the following three lines to the function:
 
-Issues encountered:
+**Issues encountered:**
 Setup initial VM with Virt-Manager and then check the virt-manager logs for the actual command that is executed. You can use
 that command to construct a functional qemu config that can work from a bash script.
 
 I had some problems trying to use my previous Windows10 config from an intel system. Solution was to recreate an initial qemu config and tweak that. Turns out the OVMF bios I was using was out of date but included in Gentoo/KVM/QEMU. A lot of changes have been made in QEMU so your old configs probably will have issues.
 
-modprobe.d configs
+**modprobe.d configs**
 
-blacklist.conf
-------------------
+**blacklist.conf**
+
 blacklist atlantic
 blacklist nvidia
 
-kvm-nested.conf
----------------
+**kvm-nested.conf**
+
 options kvm-intel nested=1
 options kvm-intel enable_shadow_vmcs=1
 options kvm-intel enable_apicv=1
 options kvm-intel ept=1
 
-vfio-pci.conf
--------------
-softdep amdgpu pre: vfio-pci
+**vfio-pci.conf**
+
+`softdep amdgpu pre: vfio-pci
 softdep radeon pre: vfio-pci
 softdep nvidia pre: vfio-pci
 softdep nvidia* pre: vfio-pci
@@ -69,17 +58,11 @@ softdep xhci_hcd pre: vfio-pci
 
 options vfio-pci ids=10de:1b80,10de:10f0,1d6a:07b1,1022:1487,1b21:3242,10ec:8168,1002:aaf0,1002:67df,1022:148c disable_vga=1
 options kvm_amd avic=1 npt=1 nested=1
+`
 
-#10de      GTX1080
-#1d6a:07b1 Aquantia NIC
-#1022:1487 Onboard Sound (Kernel Patch)
-#1b21:3242 USB 3.O Controller Back
-#10ec:8168 Realtek Gigabit Add-On Card
-#1002:aaf0 Audio on AMD RTX580
+**QEMU config for Windows**
 
-QEMU config for Windows
------------------------
-#!/bin/bash
+`#!/bin/bash
 
 vmname="mywindows10"
 if ps -A | grep -q $vmname; then
@@ -112,10 +95,11 @@ qemu-system-x86_64  \
   -drive id=disk0,if=virtio,format=raw,cache=none,file=/dev/disk/by-id/wwn-0x5002538d41c67120,aio=native \
   -drive id=disk1,if=virtio,format=raw,file=/mnt/bigdata/WindowsVirt/win10-secondary.img \
   -drive id=disk2,if=virtio,format=raw,file=/root/images/windows-10-fast.img &
+`
 
-Script for showing iommu groups well formatted - usb/storage breakdown
-----------------------------------------------------------------------
-#!/bin/bash
+####Script for showing iommu groups well formatted - usb/storage breakdown
+
+`#!/bin/bash
 
 useColors=true
 usePager=true
@@ -199,7 +183,6 @@ if [ -z "$iommuGroups" ]; then
 	echo "No IOMMU groups found. Are you sure IOMMU is enabled?"
 	exit
 fi
-
 for iommuGroup in $iommuGroups; do
 	echo "IOMMU group $(basename "$iommuGroup")" | color red
 
@@ -234,8 +217,9 @@ for iommuGroup in $iommuGroups; do
 	done | indent
 done | pager
 
-Asrock TRX40 Creator iommu groups:
-----------------------------------
+
+###Asrock TRX40 Creator iommu groups:
+
 IOMMU group 55
 	45:00.0 Network controller [0280]: Intel Corporation Wi-Fi 6 AX200 [8086:2723] (rev 1a)
 IOMMU group 17
@@ -398,3 +382,4 @@ IOMMU group 65
 	60:04.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Host Bridge [1022:1482]
 IOMMU group 27
 	22:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Function [1022:148a]
+`
