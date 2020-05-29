@@ -12,7 +12,7 @@
 * VM #1 - Windows 10 on 1080
 * VM #2 - Gento on RX580
 
-#GPU Passthru
+# GPU Passthru - Config
 
 Bios Settings: There are three or four things that need to be turned on in the Bios. Will make a list, at least one of them needs to be enabled instead of just set to auto.
 
