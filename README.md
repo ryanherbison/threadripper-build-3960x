@@ -223,7 +223,7 @@ done | pager
 ```
 
 ###Asrock TRX40 Creator iommu groups:
-
+```
 IOMMU group 55
 	45:00.0 Network controller [0280]: Intel Corporation Wi-Fi 6 AX200 [8086:2723] (rev 1a)
 IOMMU group 17
@@ -386,4 +386,4 @@ IOMMU group 65
 	60:04.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Host Bridge [1022:1482]
 IOMMU group 27
 	22:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Function [1022:148a]
-`
+```
