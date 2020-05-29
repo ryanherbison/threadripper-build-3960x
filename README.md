@@ -24,7 +24,9 @@ This line requires a kernel patch to quirks.c
 The built-in audio and two of the usb controllers have reset issues, they advertise the ability to reset but fail to implement when called.
 
 **Kernel Patch:**
-Add the following three lines to the function:
+https://www.reddit.com/r/VFIO/comments/eba5mh/workaround_patch_for_passing_through_usb_and/
+I had to add a line to match my particular USB Controller - 148c
+Also needed is the pcie_no_flr line above.
 
 **Issues encountered:**
 Setup initial VM with Virt-Manager and then check the virt-manager logs for the actual command that is executed. You can use
