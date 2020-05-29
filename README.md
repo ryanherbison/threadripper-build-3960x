@@ -38,19 +38,19 @@ I had some problems trying to use my previous Windows10 config from an intel sys
 **modprobe.d configs**
 
 **blacklist.conf**
-
+```
 blacklist atlantic
 blacklist nvidia
-
+```
 **kvm-nested.conf**
-
+```
 options kvm-intel nested=1
 options kvm-intel enable_shadow_vmcs=1
 options kvm-intel enable_apicv=1
 options kvm-intel ept=1
-
+```
 **vfio-pci.conf**
-
+```
 softdep amdgpu pre: vfio-pci
 softdep radeon pre: vfio-pci
 softdep nvidia pre: vfio-pci
@@ -61,7 +61,7 @@ softdep xhci_hcd pre: vfio-pci
 
 options vfio-pci ids=10de:1b80,10de:10f0,1d6a:07b1,1022:1487,1b21:3242,10ec:8168,1002:aaf0,1002:67df,1022:148c disable_vga=1
 options kvm_amd avic=1 npt=1 nested=1
-
+```
 
 **QEMU config for Windows**
 
