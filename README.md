@@ -16,16 +16,23 @@
 
 Bios Settings: There are three or four things that need to be turned on in the Bios. Will make a list, at least one of them needs to be enabled instead of just set to auto.
 
-**Kernel Settings:** amd_iommu=on iommu=pt pci=noaer
+**Kernel Settings:** 
+amd_iommu=on iommu=pt pci=noaer
 
-**Notes:** pci-noaer fixed issue with AMD RX580 failing to start with Qemu
+**Notes:** 
+pci-noaer fixed issue with AMD RX580 failing to start with Qemu
 
-**Additional Kernel Setting:** pcie_no_flr=1022:149C,1022:1487,1022:1048C
+**Additional Kernel Setting:** 
+
+pcie_no_flr=1022:149C,1022:1487,1022:1048C
+
 This line requires a kernel patch to quirks.c
+
 The built-in audio and two of the usb controllers have reset issues, they advertise the ability to reset but fail to implement when called.
 
 **Kernel Patch:**
 https://www.reddit.com/r/VFIO/comments/eba5mh/workaround_patch_for_passing_through_usb_and/
+
 I had to add a line to match my particular USB Controller - 148c
 Also needed is the pcie_no_flr line above.
 
