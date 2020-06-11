@@ -10,7 +10,7 @@
 * Displays (4)
 * Primary OS - Gentoo
 * VM #1 - Windows 10 on 1080
-* VM #2 - Gento on RX580
+* VM #2 - Linux Mint on RX580
 
 # GPU Passthru - Config
 
@@ -21,6 +21,11 @@ amd_iommu=on iommu=pt pci=noaer
 
 **Notes:** 
 pci-noaer fixed issue with AMD RX580 failing to start with Qemu
+For some strange reason after using the system for a few days my RX580 failed to work again and required a .rom file to be added to qemu config. It fixed the issue of a blank screen when starting the VM.
+
+Have yet to successfully pass the built-in audio controller, haven't experimented with it too much so far. While in it's own IOMMU group it is still linked to two or three other devices.  My understanding is that it is part of a USB controller. QEMU complains if you start it by itself.
+
+Networking does not seem completely stable having drop-outs occasionally. Have yet to investigate. Passing through one ethernet controller per VM.
 
 **Additional Kernel Setting:** 
 
